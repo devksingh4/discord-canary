@@ -4,7 +4,7 @@
   Discord Canary
 </h1>
 
-<p align="center"><b>This is the snap for Discord</b>, <i>"Whether you're part of a school club, gaming group, worldwide art community, or just a handful of friends that want to spend time together, Discord makes it easy to talk every day and hang out more often."</i>. It works on Ubuntu, Fedora, Debian, and other major Linux distributions.</p>
+<p align="center"><b>This is the snap for Discord Canary</b>, <i>"Whether you're part of a school club, gaming group, worldwide art community, or just a handful of friends that want to spend time together, Discord makes it easy to talk every day and hang out more often."</i>. This snap provides the Canary verison of Discord. It works on Ubuntu, Fedora, Debian, and other major Linux distributions.</p>
 <p align="center">
 <a href="https://snapcraft.io/discord-canary"><img src="https://snapcraft.io/discord-canary/badge.svg" alt="Snap Status"></a>
 </p>
@@ -21,14 +21,11 @@
 
 
 ## Remaining tasks
-<!-- Uncomment and modify this when you have a screenshot
-![my-snap-name](screenshot.png?raw=true "my-snap-name")
--->
 
 Snapcrafters ([join us](https://forum.snapcraft.io/t/join-snapcrafters/1325)) 
 are working to land snap install documentation and
-the [snapcraft.yaml](https://github.com/snapcrafters/fork-and-rename-me/blob/master/snap/snapcraft.yaml)
-upstream so [Project] can authoritatively publish future releases.
+the [snapcraft.yaml](snapcraft.yaml)
+upstream so Discord can authoritatively publish future releases.
 
   - [x] Create a snap that runs in `devmode`
   - [x] Register the snap in the store, **using the preferred upstream name**
