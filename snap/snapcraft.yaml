@@ -1,5 +1,5 @@
 name: discord-canary
-base: core18
+base: core20
 adopt-info: discord-canary
 summary: Free voice and text chat (Canary version)
 description: |
@@ -54,15 +54,15 @@ parts:
   cleanup:
     after: [discord-canary]
     plugin: nil
-    build-snaps: [gnome-3-28-1804]
+    build-snaps: [gnome-3-38-2004]
     override-prime: |
         set -eux
-        cd /snap/gnome-3-28-1804/current
+        cd /snap/gnome-3-38-2004/current
         find . -type f,l -exec rm -f $SNAPCRAFT_PRIME/{} \;
 
 apps:
   discord-canary:
-    extensions: [gnome-3-28]
+    extensions: [gnome-3-38]
     command: usr/share/discord-canary/DiscordCanary --no-sandbox
     autostart: discord-canary.desktop
     desktop: usr/share/applications/discord-canary.desktop
