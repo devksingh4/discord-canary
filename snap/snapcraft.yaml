@@ -1,15 +1,92 @@
-name: my-snap-name # you probably want to 'snapcraft register <name>'
-version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
-summary: Single-line elevator pitch for your amazing snap # 79 char long summary
+name: discord-canary
+base: core18
+adopt-info: discord-canary
+summary: Free voice and text chat (Canary version)
 description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+ Whether you're part of a school club, gaming group, worldwide art community,
+ or just a handful of friends that want to spend time together,
+ Discord makes it easy to talk every day and hang out more often.
 
-confinement: devmode # use 'strict' once you have the right plugs and slots
+grade: devel
+confinement: strict
+
+architectures:
+  - build-on: amd64
+compression: lzo
 
 parts:
-  my-part:
-    # See 'snapcraft plugins'
+  libappindicator:
     plugin: nil
+    stage-packages:
+      - libappindicator3-1
+    prime:
+      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libdbusmenu*.so*
+      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libappindicator*.so*
+      - usr/lib/$SNAPCRAFT_ARCH_TRIPLET/libindicator*.so*
+
+  discord-canary:
+    after: [libappindicator]
+    plugin: dump
+    source: "https://discord.com/api/download/canary?platform=linux&format=deb"
+    source-type: deb
+    override-build: |
+      snapcraftctl build
+      DEB_API="https://discord.com/api/download/canary?platform=linux&format=deb"
+      DEB_URL=$(curl -w "%{url_effective}\n" -I -L -s -S "${DEB_API}" -o /dev/null)
+      VERSION=$(echo "${DEB_URL}" | cut -d'/' -f6)
+      snapcraftctl set-version $(echo $VERSION)
+      rm $SNAPCRAFT_PART_INSTALL/usr/share/discord-canary/chrome-sandbox
+      # Correct path to icon.
+      sed -i 's|Icon=discord-canary|Icon=/usr/share/discord-canary/discord\.png|' ${SNAPCRAFT_PART_INSTALL}/usr/share/discord-canary/discord-canary.desktop
+      sed -i 's|StartupWMClass=discord|StartupWMClass=discord-canary|' ${SNAPCRAFT_PART_INSTALL}/usr/share/discord-canary/discord-canary.desktop
+    build-packages:
+      - curl
+      - sed
+    stage-packages:
+      - libatomic1
+      - libc++1
+      - libnspr4
+      - libnss3
+      - libxss1
+      - xdg-utils
+    prime:
+      - -usr/bin/xdg-open
+  cleanup:
+    after: [discord-canary]
+    plugin: nil
+    build-snaps: [gnome-3-28-1804]
+    override-prime: |
+        set -eux
+        cd /snap/gnome-3-28-1804/current
+        find . -type f,l -exec rm -f $SNAPCRAFT_PRIME/{} \;
+
+apps:
+  discord-canary:
+    extensions: [gnome-3-28]
+    command: usr/share/discord-canary/DiscordCanary --no-sandbox
+    autostart: discord-canary.desktop
+    desktop: usr/share/applications/discord-canary.desktop
+    environment:
+      # Correct the TMPDIR path for Chromium Framework/Electron to
+      # ensure libappindicator has readable resources
+      TMPDIR: $XDG_RUNTIME_DIR
+      # Coerce XDG_CURRENT_DESKTOP to Unity so that App Indicators
+      # are used and do not fall back to Notification Area applets
+      # or disappear completely.
+      XDG_CURRENT_DESKTOP: Unity
+      # Fallback to XWayland if running in a Wayland session.
+      DISABLE_WAYLAND: 1
+    plugs:
+      - browser-support
+      - camera
+      - home
+      - mount-observe
+      - network
+      - network-observe
+      - opengl
+      - process-control
+      - pulseaudio
+      - removable-media
+      - screen-inhibit-control
+      - system-observe
+      - unity7
