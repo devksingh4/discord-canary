@@ -90,3 +90,4 @@ apps:
       - screen-inhibit-control
       - system-observe
       - unity7
+      - desktop
