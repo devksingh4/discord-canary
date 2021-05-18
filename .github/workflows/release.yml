@@ -1,0 +1,22 @@
+name: Run new Discord build
+on:
+  schedule:
+  - cron: "0 0 */3 * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v2
+    - name: Install Snapcraft
+      uses: samuelmeuli/action-snapcraft@v1
+      with:
+        snapcraft_token: ${{ secrets.snapcraft_token }}
+        use_lxd: true
+    - name: Build snap
+      run: sg lxd -c 'snapcraft --use-lxd'
+    - name: Change filename
+      run: mv *.snap discord-canary.snap
+    - name: Release to snap store
+      run: snapcraft upload discord-canary.snap --release edge,beta
