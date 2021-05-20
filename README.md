@@ -19,6 +19,8 @@
 
 <p align="center">Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.png" align="top" width="24" /> with :gift_heart: by Snapcrafters</p>
 
+## Updates
+This snap is automatically updated using GitHub Actions every day at 00:00 UTC to keep up with the Discord Canary updates that are deployed upstream and ensure that the snap remains updated.
 
 ## Remaining tasks
 
