@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://user-images.githubusercontent.com/7602755/28743829-86987b08-744b-11e7-96ec-1bc550356b2e.png" alt="Discord Canary">
+  <img src="https://github.com/devksingh4/discord-canary/raw/master/discord.png" alt="Discord Canary">
   <br />
   Discord Canary
 </h1>
