@@ -90,4 +90,6 @@ apps:
       - screen-inhibit-control
       - system-observe
       - unity7
+      - audio-record
+      - audio-playback
       - desktop
