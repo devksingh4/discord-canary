@@ -15,4 +15,4 @@ jobs:
       with:
         store_login: ${{ secrets.STORE_LOGIN }}
         snap: ${{ steps.build.outputs.snap }}
-        release: beta,edge
+        release: stable,beta,edge
