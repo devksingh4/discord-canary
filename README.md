@@ -57,8 +57,6 @@ If you have any questions, [post in the Snapcraft forum](https://forum.snapcraft
 
 ## The Snapcrafters
 
-| [![Dev Singh](https://avatars.githubusercontent.com/u/18728114?v=4)](https://github.com/devksingh4/) |
-| :---: |
 | [Dev Singh](https://github.com/devksingh4/) |
 
 <!-- Uncomment and modify this when you have upstream contacts
