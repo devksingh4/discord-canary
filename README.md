@@ -4,6 +4,7 @@
   Discord Canary
 </h1>
 
+
 <p align="center"><b>This is the snap for Discord Canary</b>, <i>"Whether you're part of a school club, gaming group, worldwide art community, or just a handful of friends that want to spend time together, Discord makes it easy to talk every day and hang out more often."</i>. This snap provides the Canary verison of Discord. It works on Ubuntu, Fedora, Debian, and other major Linux distributions.</p>
 <p align="center">
 <a href="https://snapcraft.io/discord-canary"><img src="https://snapcraft.io/discord-canary/badge.svg" alt="Snap Status"></a>
