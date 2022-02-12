@@ -1,0 +1,17 @@
+name: Empty commit to keep builds running
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: "0 5 */30 * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Commit
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'ga@devksingh.com'
+        git commit --allow-empty -m "chore: keep builds running"
+        git push origin --force master:repo-update
